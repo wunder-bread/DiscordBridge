@@ -49,6 +49,8 @@ public class ClientConnectionListener {
 			} else {
 			    ErrorMessages.CHANNEL_NOT_FOUND.log(channelConfig.discordId);
 			}
+			mod.setPlayerCount(1);
+			ChannelUtil.setDescription(channel, "Online - Number of Players: "+mod.getPlayerCount());
 		    }
 
 		}
@@ -80,10 +82,13 @@ public class ClientConnectionListener {
 			} else {
 			    ErrorMessages.CHANNEL_NOT_FOUND.log(channelConfig.discordId);
 			}
+			mod.setPlayerCount(-1);
+			ChannelUtil.setDescription(channel, "Online - Number of Players: "+mod.getPlayerCount());
 		    }
 		    mod.removeAndLogoutClient(playerId);
 		    // unauthenticatedPlayers.remove(playerId);
 		    mod.getLogger().info(player.getName() + " has disconnected!");
+		    
 		}
 	    }
 	}
