@@ -84,11 +84,14 @@ public class DiscordBridge {
                     Channel channel = botClient.getChannelById(channelConfig.discordId);
                     if (channel != null) {
                         ChannelUtil.sendMessage(channel, channelConfig.discord.serverDownMessage);
+                        ChannelUtil.setDescription(channel, "Offline");
                     } else {
                         ErrorMessages.CHANNEL_NOT_FOUND.log(channelConfig.discordId);
                     }
                 }
             }
+            
+            
         }
     }
 

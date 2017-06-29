@@ -14,4 +14,7 @@ public class ChannelUtil {
     public static void sendMessage(Channel channel, String content) {
         channel.sendMessage(content, null, false, SPECIAL_CHAR + BOT_RANDOM, null);
     }
+    public static void setDescription(Channel channel, String content){
+	channel.updateTopic(content);
+    }
 }
