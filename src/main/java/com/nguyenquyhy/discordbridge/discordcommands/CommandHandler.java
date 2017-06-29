@@ -1,9 +1,6 @@
-package com.nguyenquyhy.discordbridge.database.discordcommands;
+package com.nguyenquyhy.discordbridge.discordcommands;
 
 import java.util.Optional;
-import java.util.UUID;
-
-import org.apache.commons.lang3.StringUtils;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.entity.living.player.Player;
@@ -15,8 +12,6 @@ import com.nguyenquyhy.discordbridge.models.ChannelConfig;
 import com.nguyenquyhy.discordbridge.models.GlobalConfig;
 import com.nguyenquyhy.discordbridge.utils.ChannelUtil;
 import com.nguyenquyhy.discordbridge.utils.ErrorMessages;
-import com.nguyenquyhy.discordbridge.utils.TextUtil;
-
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.Channel;
 import de.btobastian.javacord.entities.User;
@@ -91,7 +86,7 @@ public class CommandHandler {
 		ErrorMessages.CHANNEL_NOT_FOUND.log(channelConfig.discordId);
 		return;
 	    }
-	    ChannelUtil.banPlayer(channel, substring);
+	    //ChannelUtil.banPlayer(channel, substring);
 	}
 
     }
