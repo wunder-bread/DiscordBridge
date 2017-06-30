@@ -1,4 +1,4 @@
-package com.nguyenquyhy.discordbridge.database.discordcommands;
+package com.nguyenquyhy.discordbridge.discordcommands;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
