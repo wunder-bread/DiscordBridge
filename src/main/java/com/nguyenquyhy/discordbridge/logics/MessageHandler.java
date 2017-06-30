@@ -1,7 +1,7 @@
 package com.nguyenquyhy.discordbridge.logics;
 
 import com.nguyenquyhy.discordbridge.DiscordBridge;
-import com.nguyenquyhy.discordbridge.database.discordcommands.CommandHandler;
+import com.nguyenquyhy.discordbridge.discordcommands.CommandHandler;
 import com.nguyenquyhy.discordbridge.models.ChannelConfig;
 import com.nguyenquyhy.discordbridge.models.ChannelMinecraftConfigCore;
 import com.nguyenquyhy.discordbridge.models.GlobalConfig;
