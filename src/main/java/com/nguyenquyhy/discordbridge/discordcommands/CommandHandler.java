@@ -10,7 +10,6 @@ import org.spongepowered.api.text.format.TextColors;
 import com.nguyenquyhy.discordbridge.DiscordBridge;
 import com.nguyenquyhy.discordbridge.models.ChannelConfig;
 import com.nguyenquyhy.discordbridge.models.GlobalConfig;
-import com.nguyenquyhy.discordbridge.utils.ChannelUtil;
 import com.nguyenquyhy.discordbridge.utils.ErrorMessages;
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.Channel;
@@ -46,9 +45,10 @@ public class CommandHandler {
 
     }
     private static void queueCommand(User user,Channel channel,DiscordBridge mod, String[] strings) {
-	if(strings[0].equals("tps")) TpsCommand.run(mod);
-	else if(strings[0].equals("players")) PlayerCommand.run(mod, channel);
+	if(strings[0].equals("players")) PlayerCommand.run(mod, channel);
 
+	//if(strings[0].equals("tps")) TpsCommand.run(mod,channel);
+	//else 
     }
 
     private static boolean permCheck(Optional<Player> player, String permission) {
