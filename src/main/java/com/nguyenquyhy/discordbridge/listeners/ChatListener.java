@@ -1,6 +1,7 @@
 package com.nguyenquyhy.discordbridge.listeners;
 
 import com.nguyenquyhy.discordbridge.DiscordBridge;
+import com.nguyenquyhy.discordbridge.hooks.Boop;
 import com.nguyenquyhy.discordbridge.models.ChannelConfig;
 import com.nguyenquyhy.discordbridge.models.GlobalConfig;
 import com.nguyenquyhy.discordbridge.utils.ChannelUtil;
@@ -47,6 +48,8 @@ public class ChatListener {
             MessageChannel channel = event.getChannel().get();
             if (channel.getClass().getName().equals("io.github.nucleuspowered.nucleus.modules.staffchat.StaffChatMessageChannel"))
                 isStaffChat = true;
+            else if(channel.getClass().getName().equals(Boop.getMessageChannelClass()))
+        	isStaffChat = false;
             else if (!channel.getClass().getName().startsWith("org.spongepowered.api.text.channel.MessageChannel"))
                 return; // Ignore all other types
         }
