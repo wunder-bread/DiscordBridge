@@ -2,6 +2,7 @@ package com.nguyenquyhy.discordbridge.listeners;
 
 import com.nguyenquyhy.discordbridge.DiscordBridge;
 import com.nguyenquyhy.discordbridge.hooks.Boop;
+import com.nguyenquyhy.discordbridge.hooks.Nucleus;
 import com.nguyenquyhy.discordbridge.models.ChannelConfig;
 import com.nguyenquyhy.discordbridge.models.GlobalConfig;
 import com.nguyenquyhy.discordbridge.utils.ChannelUtil;
@@ -46,7 +47,7 @@ public class ChatListener {
         boolean isStaffChat = false;
         if (event.getChannel().isPresent()) {
             MessageChannel channel = event.getChannel().get();
-            if (channel.getClass().getName().equals("io.github.nucleuspowered.nucleus.modules.staffchat.StaffChatMessageChannel"))
+            if (channel.getClass().getName().equals(Nucleus.getStaffMessageChannelClass()))
                 isStaffChat = true;
             else if(channel.getClass().getName().equals(Boop.getMessageChannelClass()))
         	isStaffChat = false;
