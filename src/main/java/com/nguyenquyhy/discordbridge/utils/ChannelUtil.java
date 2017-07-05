@@ -15,18 +15,10 @@ public class ChannelUtil {
     public static void sendMessage(Channel channel, String content) {
         channel.sendMessage(content, null, false, SPECIAL_CHAR + BOT_RANDOM, null);
     }
-    public static void kickPlayer(Channel channel, String content) {
-	for(User user : channel.getServer().getMembers()){
-	    if(user.getName().startsWith(content)){
-		channel.getServer().kickUser(user);
-	    }
-	}
+    public static void kickPlayer(Channel channel, String user) {
+		channel.getServer().kickUser(DiscordUtil.getUserByName(user, channel.getServer()).get());
     }
-    public static void banPlayer(Channel channel, String content) {
-	for(User user : channel.getServer().getMembers()){
-	    if(user.getName().equals(content)){
-		channel.getServer().banUser(user);
-	    }
-	}
+    public static void banPlayer(Channel channel, String user) {
+	channel.getServer().banUser(DiscordUtil.getUserByName(user, channel.getServer()).get());
     }
 }
