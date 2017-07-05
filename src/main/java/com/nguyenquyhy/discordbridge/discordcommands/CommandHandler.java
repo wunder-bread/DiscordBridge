@@ -11,10 +11,15 @@ import com.nguyenquyhy.discordbridge.DiscordBridge;
 import com.nguyenquyhy.discordbridge.models.ChannelConfig;
 import com.nguyenquyhy.discordbridge.models.GlobalConfig;
 import com.nguyenquyhy.discordbridge.utils.ErrorMessages;
+import com.nguyenquyhy.discordbridge.utils.DiscordUtil;
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.Channel;
 import de.btobastian.javacord.entities.User;
 import de.btobastian.javacord.entities.message.Message;
+import de.btobastian.javacord.entities.permissions.PermissionState;
+import de.btobastian.javacord.entities.permissions.PermissionType;
+import de.btobastian.javacord.entities.permissions.Permissions;
+import de.btobastian.javacord.entities.permissions.Role;
 
 public class CommandHandler {
 
@@ -40,15 +45,17 @@ public class CommandHandler {
 	}
 
 	if (strings[0].equals("ban") && permCheck(player, id + "ban")) {
-
+	    
 	}
 
     }
     private static void queueCommand(User user,Channel channel,DiscordBridge mod, String[] strings) {
+	
+	
 	if(strings[0].equals("players")) PlayerCommand.run(mod, channel);
-
-	//if(strings[0].equals("tps")) TpsCommand.run(mod,channel);
-	//else 
+	else if(strings[0].equals("tps")) TpsCommand.run(mod, channel);
+	else if(strings[0].equals("kick") && discordPermCheck(user, channel, PermissionType.KICK_MEMBERS)) KickCommand.run(mod, channel, strings[1]);
+	else if(strings[0].equals("ban") && discordPermCheck(user, channel, PermissionType.BAN_MEMBERS)) BanCommand.run(mod,channel,strings[1]);
     }
 
     private static boolean permCheck(Optional<Player> player, String permission) {
@@ -58,6 +65,12 @@ public class CommandHandler {
 	    return true;
 	else
 	    return false;
+    }
+    private static boolean discordPermCheck(User user, Channel channel, PermissionType perm){
+	for(Role role: user.getRoles(channel.getServer())){
+	    if(role.getPermissions().getState(perm).equals(PermissionState.ALLOWED)) return true;
+	}
+	return false;
     }
 
     private static void sendMessageToSource(Optional<Player> player, int code) {
