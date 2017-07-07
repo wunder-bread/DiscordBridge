@@ -14,6 +14,7 @@ import com.nguyenquyhy.discordbridge.utils.ErrorMessages;
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.Channel;
 import ninja.leaping.configurate.objectmapping.ObjectMappingException;
+import twitter4j.Twitter;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.spongepowered.api.Game;
@@ -31,13 +32,15 @@ import java.util.*;
 /**
  * Created by Hy on 1/4/2016.
  */
-@Plugin(id = "discordbridge", name = "Discord Bridge", version = "2.3.0",
+@Plugin(id = "discordbridge", name = "Discord Bridge", version = "2.5.0",
         description = "A Sponge plugin to connect your Minecraft server with Discord", authors = {"Hy", "Mohron, Axle2005"})
 public class DiscordBridge {
 
     private DiscordAPI consoleClient = null;
     private final Map<UUID, DiscordAPI> humanClients = new HashMap<>();
     private DiscordAPI botClient = null;
+    
+    private Twitter twitterAPI;
 
     private final Set<UUID> unauthenticatedPlayers = new HashSet<>(100);
 
@@ -71,8 +74,11 @@ public class DiscordBridge {
     @Listener
     public void onServerStarting(GameStartingServerEvent event) {
 	CommandRegistry.register();
-        LoginHandler.loginBotAccount();
+        LoginHandler.loginBotAccount();   
+        
+
     }
+    
 
 
     @Listener
@@ -134,6 +140,14 @@ public class DiscordBridge {
 
     public void setBotClient(DiscordAPI botClient) {
         this.botClient = botClient;
+    }
+    
+    public Twitter getTwitterAPI() {
+        return twitterAPI;
+    }
+
+    public void setTwitterAPI(Twitter twitter) {
+        this.twitterAPI = twitter;
     }
 
     public Map<UUID, DiscordAPI> getHumanClients() {
