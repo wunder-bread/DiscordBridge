@@ -40,7 +40,7 @@ public class TwitterUpdateListener {
 
 				    StatusListener listener = new StatusListener() {
 				        public void onStatus(Status status) {
-				            ChannelUtil.sendMessage(channel,status.getText());
+				            if(!status.getText().startsWith("@")) ChannelUtil.sendMessage(channel,status.getText());
 				            
 				        }
 
