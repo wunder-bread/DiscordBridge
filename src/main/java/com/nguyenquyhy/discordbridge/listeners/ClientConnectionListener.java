@@ -11,12 +11,12 @@ import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.Channel;
 
 import org.apache.commons.lang3.StringUtils;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.filter.cause.Root;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 
-import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -49,8 +49,9 @@ public class ClientConnectionListener {
 			} else {
 			    ErrorMessages.CHANNEL_NOT_FOUND.log(channelConfig.discordId);
 			}
-			mod.setPlayerCount(1);
-			ChannelUtil.setDescription(channel, "Online - Number of Players: "+mod.getPlayerCount());
+			
+			
+			ChannelUtil.setDescription(channel, channelConfig.discord.descriptionTemplate.replaceAll("%pc", getPlayerCount()+""));
 		    }
 
 		}
@@ -82,8 +83,7 @@ public class ClientConnectionListener {
 			} else {
 			    ErrorMessages.CHANNEL_NOT_FOUND.log(channelConfig.discordId);
 			}
-			mod.setPlayerCount(-1);
-			ChannelUtil.setDescription(channel, "Online - Number of Players: "+mod.getPlayerCount());
+			ChannelUtil.setDescription(channel, channelConfig.discord.descriptionTemplate.replaceAll("%pc", getPlayerCount()-1+""));
 		    }
 		    mod.removeAndLogoutClient(playerId);
 		    // unauthenticatedPlayers.remove(playerId);
@@ -92,6 +92,10 @@ public class ClientConnectionListener {
 		}
 	    }
 	}
+    }
+    
+    private int getPlayerCount(){
+	return Sponge.getServer().getOnlinePlayers().size();
     }
 
 }

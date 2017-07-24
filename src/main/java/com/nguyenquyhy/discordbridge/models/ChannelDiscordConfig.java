@@ -15,6 +15,7 @@ public class ChannelDiscordConfig {
     void initializeDefault() {
         joinedTemplate = "_%s just joined the server_";
         leftTemplate = "_%s just left the server_";
+        descriptionTemplate ="Players online: %pc";
         publicChat = new SpongeChannelConfig();
         publicChat.authenticatedChatTemplate = "%s";
         publicChat.anonymousChatTemplate = "`%a:` %s";
@@ -28,6 +29,8 @@ public class ChannelDiscordConfig {
     public String joinedTemplate;
     @Setting
     public String leftTemplate;
+    @Setting 
+    public String descriptionTemplate;
     @Setting
     public SpongeChannelConfig publicChat;
     @Setting

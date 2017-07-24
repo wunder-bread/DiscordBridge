@@ -59,7 +59,6 @@ public class DiscordBridge {
     private IStorage storage;
 
     private static DiscordBridge instance;
-    private int playerCount=0;
 
     @Listener
     public void onPreInitialization(GamePreInitializationEvent event) throws IOException, ObjectMappingException {
@@ -76,8 +75,9 @@ public class DiscordBridge {
 	CommandRegistry.register();
         LoginHandler.loginBotAccount();   
         
-
+        
     }
+    
     
 
 
@@ -164,13 +164,6 @@ public class DiscordBridge {
         } else {
             humanClients.put(player, client);
         }
-    }
-
-    public void setPlayerCount(int change){
-	playerCount+=change;
-    }
-    public int getPlayerCount(){
-	return playerCount;
     }
     public void removeAndLogoutClient(UUID player) {
         if (player == null) {
